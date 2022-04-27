@@ -12,6 +12,10 @@ export const Recipe = () => {
   const [ingredientsOpen, setIngredientsOpen] = useState([]);
 
   useEffect(() => {
+    if (!id) {
+      return;
+    }
+
     let newItem = data.find(({ id: _id }) => _id === id);
     let { ingredients } = newItem;
     if (ingredients && !Array.isArray(ingredients)) {
