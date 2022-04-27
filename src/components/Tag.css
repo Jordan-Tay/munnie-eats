@@ -1,0 +1,11 @@
+.tag {
+  /* border-style: solid; */
+  border-radius: 10px;
+  /* border-color: magenta; */
+  background-color: #ffe4e1;
+  padding: 2px 7px;
+  margin-right: 7px;
+  color: #85144b;
+  height: 20px;
+  font-size: 15px;
+}

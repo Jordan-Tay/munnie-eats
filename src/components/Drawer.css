@@ -1,0 +1,9 @@
+.drawer-container {
+  padding: 15px;
+  border-style: solid;
+  border-color: #85144b;
+  border-width: 0px 0px 2px;
+  background-color: #ffe4e1;
+  position: relative;
+  font-size: 20px;
+}
