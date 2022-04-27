@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/eats/static/css/main.affb1d18.css",
+    "main.js": "/eats/static/js/main.6c107ee1.js",
+    "static/media/gyudon.jpeg": "/eats/static/media/gyudon.06e8dc6b837cdd5b9773.jpeg",
+    "static/media/profile.jpg": "/eats/static/media/profile.4b19d51e5b909b2737d6.jpg",
+    "static/media/niku udon.webp": "/eats/static/media/niku udon.1eb8bcfcd122047ea5b1.webp",
+    "static/media/teppan beef.jpeg": "/eats/static/media/teppan beef.88d005275f9d02042fa0.jpeg",
+    "static/media/eclair.jpeg": "/eats/static/media/eclair.b23301e822fcf56d0974.jpeg",
+    "index.html": "/eats/index.html",
+    "main.affb1d18.css.map": "/eats/static/css/main.affb1d18.css.map",
+    "main.6c107ee1.js.map": "/eats/static/js/main.6c107ee1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.affb1d18.css",
+    "static/js/main.6c107ee1.js"
+  ]
+}
