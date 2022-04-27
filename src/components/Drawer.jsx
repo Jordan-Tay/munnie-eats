@@ -14,7 +14,7 @@ export const Drawer = ({ isOpen, setIsOpen }) => {
       variant='temporary'
       sx={{ position: 'relative', "& .MuiDrawer-paper": { borderWidth: 0 } }}
     >
-      <div style={{ height: '82px' }} />
+      <div style={{ height: '82px', backgroundColor: '#ffe4e1' }} />
       <div className='drawer-container'>
         <List>
           <Link to='/' onClick={() => setIsOpen(false)}>
