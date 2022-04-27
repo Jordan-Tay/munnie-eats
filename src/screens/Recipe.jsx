@@ -16,9 +16,7 @@ export const Recipe = () => {
       return;
     }
 
-    console.log(id);
     let newItem = data.find(({ id: _id }) => _id === id);
-    console.log(newItem);
     let { ingredients } = newItem;
     if (ingredients && !Array.isArray(ingredients)) {
       setIngredientsOpen(Array(Object.keys(ingredients).length).fill(true));
