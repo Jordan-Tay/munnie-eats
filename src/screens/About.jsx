@@ -19,7 +19,7 @@ export const About = () => {
           <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
             <div style={{ height: '82px' }} />
             <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center' }}>
-              <img style={{ objectFit: 'cover', display: 'block', height: '100%' }} src={profile} alt='profile' />
+              <img style={{ objectFit: 'cover', display: 'block', height: '100%', width: '100%' }} src={profile} alt='profile' />
             </div>
           </div>
         </Grid>
