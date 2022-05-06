@@ -22,7 +22,7 @@ export const Navbar = ({menuOpen, toggleMenu}) => {
     <div className='nav'>
       {/* <div style={{display: 'flex', alignItems: 'center'}}> */}
         <UseAnimations 
-          wrapperStyle={{cursor: 'pointer', position: 'absolute', left: '10px', top: '20px'}}
+          wrapperStyle={{cursor: 'pointer', position: 'absolute', left: matches ? '75px' : '10px', top: '20px'}}
           animation={menu} 
           size={42} 
           reverse={!menuOpen}
@@ -39,7 +39,7 @@ export const Navbar = ({menuOpen, toggleMenu}) => {
           {/* </div> */}
         </Link>
       {/* </div> */}
-      <div style={{display: 'flex', alignItems: 'center', position: 'absolute', right: '10px', top: '20px'}}>
+      <div style={{display: 'flex', alignItems: 'center', position: 'absolute', right: matches ? '75px' : '10px', top: '20px'}}>
         {/* <UseAnimations 
           wrapperStyle={{cursor: 'pointer', marginRight: '10px'}}
           animation={twitter} 

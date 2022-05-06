@@ -4,9 +4,9 @@ import { Navbar, Card, Drawer } from './components';
 import { createTheme, responsiveFontSizes } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import { useState } from 'react';
-import { data } from './data';
+import { all } from './data';
 import { Route, Routes } from 'react-router-dom';
-import { About, Home, Recipe } from './screens';
+import { About, Recipes, Recipe, Home } from './screens';
 
 let theme = createTheme({
   typography: {
@@ -34,7 +34,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
-          <Route path='/recipes' element={<div>recipes</div>} />
+          <Route path='/recipes' element={<Recipes />} />
           <Route path='/:id' element={<Recipe />} />
         </Routes>
       </div>

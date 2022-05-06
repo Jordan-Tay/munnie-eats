@@ -3,7 +3,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import { Collapse, Divider, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Snackbar, Tooltip } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { data } from '../data';
+import { all } from '../data';
 
 export const Recipe = () => {
   const { id } = useParams();
@@ -16,7 +16,7 @@ export const Recipe = () => {
       return;
     }
 
-    let newItem = data.find(({ id: _id }) => _id === id);
+    let newItem = all.find(({ id: _id }) => _id === id);
     let { ingredients } = newItem;
     if (ingredients && !Array.isArray(ingredients)) {
       setIngredientsOpen(Array(Object.keys(ingredients).length).fill(true));
@@ -80,8 +80,8 @@ export const Recipe = () => {
                       {ingredientsOpen[i] ? <ExpandLess /> : <ExpandMore />}
                     </ListItemButton>
                     <Collapse in={ingredientsOpen[i]} unmountOnExit>
-                      <List disablePadding>
-                        {ingredients[part].map(ingredient => <ListItemText sx={{ pl: 4 }} primary={ingredient} />)}
+                      <List disablePadding sx={{ listStyle: 'inside' }}>
+                        {ingredients[part].map(ingredient => <ListItem sx={{ display: 'list-item' }}>{ingredient}</ListItem>)}
                       </List>
                     </Collapse>
                   </div>)}

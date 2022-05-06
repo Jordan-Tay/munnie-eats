@@ -1,4 +1,4 @@
-import { Drawer as MuiDrawer, List, ListItem, ListItemText } from '@mui/material';
+import { Drawer as MuiDrawer, List, ListItem, ListItemText, useMediaQuery, useTheme } from '@mui/material';
 import './Drawer.css';
 import { Link } from 'react-router-dom';
 import React from 'react';
@@ -6,6 +6,9 @@ import UseAnimations from 'react-useanimations';
 import arrowUp from 'react-useanimations/lib/arrowUp';
 
 export const Drawer = ({ isOpen, setIsOpen }) => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+
   return (
     <MuiDrawer
       open={isOpen}
@@ -15,7 +18,7 @@ export const Drawer = ({ isOpen, setIsOpen }) => {
       sx={{ position: 'relative', "& .MuiDrawer-paper": { borderWidth: 0 } }}
     >
       <div style={{ height: '82px', backgroundColor: '#ffe4e1' }} />
-      <div className='drawer-container'>
+      <div className='drawer-container' style={{ padding: matches ? '15px 65px' : '15px' }}>
         <List>
           <Link to='/' onClick={() => setIsOpen(false)}>
             <ListItem button key='Home'>
@@ -33,8 +36,8 @@ export const Drawer = ({ isOpen, setIsOpen }) => {
             </ListItem>
           </Link>
         </List>
-        <UseAnimations animation={arrowUp} wrapperStyle={{ position: 'absolute', top: '20px', right: '20px' }} />
-        <div style={{ position: 'absolute', top: '50px', right: '20px' }}>Eh follow me la</div>
+        {/* <UseAnimations animation={arrowUp} wrapperStyle={{ position: 'absolute', top: '20px', right: '20px' }} />
+        <div style={{ position: 'absolute', top: '50px', right: '20px' }}>Eh follow me la</div> */}
       </div>
     </MuiDrawer>
   );
