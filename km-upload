@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 echo "What changes have you made?"
 read commit_message
@@ -7,8 +8,8 @@ if [ $verified = y ]
 then
   git add .
   git commit -m "$commit_message"
-  npm run deploy
   git push
+  npm run deploy
 else
   echo "Please verify your changes, run:"
   echo "  npm start"

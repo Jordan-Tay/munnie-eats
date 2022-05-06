@@ -27,11 +27,11 @@ To add a post, go to `./src/data.js`. Add an object to the front of `data` with 
 const data = [
   {
     title: "Eclair",             // Name of food
-    homeTag: "French Dessert"    // Tag displayed on the home page
+    homeTag: "French Dessert",   // Tag displayed on the home page
     tags: ["Pastry", "Dessert"], // List of tags
     image: "eclair.jpeg",        // Name of image file, store all 
                                  // image files in ./src/images
-    size: "large"                // Size of image on the home page, 
+    size: "large",               // Size of image on the home page, 
                                  // can be "small", "medium" or "large",
                                  // Optional, default is "small"
 
@@ -40,7 +40,7 @@ const data = [
     recipeAvailable: true,       // Set to true if there is a recipe
     prepTime: "15 mins",         // Optional
     totalTime: "1 hour",         // Optional
-    portions: "24"               // Optional
+    portions: "24",              // Optional
 
     // There are two different ways to represent ingredients, one list:
     ingredients: [
@@ -62,8 +62,18 @@ const data = [
     instructions: [              // List of instructions
       "Mix flour",
       "Magic"
-    ]
+    ],
   },
   ...
 ]
 ```
+
+After making changes to `./src/data.js`, run 
+```
+npm start
+```
+and go to [http://localhost:3000](http://localhost:3000) to verify that the changes are as intended. Then, run:
+```
+./km-upload
+```
+to commit changes. 
