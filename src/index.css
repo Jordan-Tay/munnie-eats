@@ -1,5 +1,18 @@
+:root {
+  --primary: #ffe4e1;
+  --secondary: #85144b;
+  --recipe-primary: #b0e0e6;
+  --recipe-secondary: #008080;
+  --font-xs: 15px;
+  --font-sm: 20px;
+  --font-md: 25px;
+  --font-lg: 30px;
+  --font-xl: 35px;
+  --font-xxl: 40px;
+}
+
 body {
   margin: 0;
   font-family: 'Indie Flower';
-  background-color: #ffe4e1;
+  background-color: var(--primary);
 }

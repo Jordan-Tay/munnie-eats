@@ -92,18 +92,21 @@ const data = [
     tags: ["Japanese", "Lunch"],
     image: "gyudon.jpeg",
     description: "Beef bowl!",
+    // size: 'medium',
   },
   {
     title: "Teppan Beef",
     tags: ["Japanese", "Lunch"],
-    image: "teppan beef.jpeg"
+    image: "teppan beef.jpeg",
+    // size: 'medium',
   },
   {
     title: "Niku Udon",
     tags: ["Japanese", "Lunch"],
-    image: "niku udon.webp"
+    image: "niku udon.webp",
+    // size: 'medium',
   },
-].map(item => ({ ...item, image: require(`./images/${item.image}`), id: kebabCase(item.title) }));
+].map(item => ({ ...item, image: item.image ? require(`./images/${item.image}`) : undefined, id: kebabCase(item.title) }));
 
 export const all = data;
 export const recipes = data.filter(({ recipeAvailable }) => recipeAvailable);

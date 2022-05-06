@@ -3,15 +3,15 @@
   justify-content: center;
   align-items: center;
   /* padding: 20px; */
-  background-color: #ffe4e1;
+  background-color: var(--primary);
   height: 80px;
   border-style: solid;
-  border-color: #85144b;
+  border-color: var(--secondary);
   border-width: 0px 0px 2px;
 }
 
 .title {
-  font-size: 40px;
+  font-size: var(--font-xxl);
   font-weight: bold;
   color: black;
 }
@@ -19,6 +19,6 @@
 .pathname {
   /* font-family: 'Karmuns Handwriting Regular'; */
   /* font-style: italic; */
-  color: #85144b;
+  color: var(--secondary);
   margin-left: 25px;
 }

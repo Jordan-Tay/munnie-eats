@@ -10,7 +10,8 @@ import profile from "../images/profile.jpg";
 export const About = () => {
   const location = useLocation();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const sm = useMediaQuery(theme.breakpoints.only("sm"));
+  const md = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <div style={{ height: '100vh', width: '100vw', position: 'absolute', top: 0 }}>
@@ -25,7 +26,7 @@ export const About = () => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-            {matches && <div style={{ height: '82px' }} />}
+            {(sm || md) && <div style={{ height: '82px' }} />}
             <div style={{ margin: '40px', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center' }}>
               <h2 style={{ textAlign: 'center' }}>Hello!</h2>
               <p style={{ fontSize: '20px' }}>

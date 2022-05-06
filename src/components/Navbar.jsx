@@ -15,14 +15,15 @@ const pathnameMap = {
 export const Navbar = ({menuOpen, toggleMenu}) => {
   const location = useLocation();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const sm = useMediaQuery(theme.breakpoints.only("sm"));
+  const md = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <AppBar sx={{ position: 'relative', zIndex: (theme) => theme.zIndex.drawer + 1 }} elevation={0}>
     <div className='nav'>
       {/* <div style={{display: 'flex', alignItems: 'center'}}> */}
         <UseAnimations 
-          wrapperStyle={{cursor: 'pointer', position: 'absolute', left: matches ? '75px' : '10px', top: '20px'}}
+          wrapperStyle={{cursor: 'pointer', position: 'absolute', left: md ? '75px' : sm ? '35px' : '10px', top: '20px'}}
           animation={menu} 
           size={42} 
           reverse={!menuOpen}
@@ -32,14 +33,14 @@ export const Navbar = ({menuOpen, toggleMenu}) => {
           {/* <div className='title' style={{marginLeft: '10px'}}> */}
           <h1>
             Munnie Eats
-            {matches && <span className='pathname'>
+            {(sm || md) && <span className='pathname'>
               {pathnameMap[location.pathname] || 'RECIPES'}
             </span>}
           </h1>
           {/* </div> */}
         </Link>
       {/* </div> */}
-      <div style={{display: 'flex', alignItems: 'center', position: 'absolute', right: matches ? '75px' : '10px', top: '20px'}}>
+      <div style={{display: 'flex', alignItems: 'center', position: 'absolute', right: md ? '75px' : sm ? '35px' : '10px', top: '20px'}}>
         {/* <UseAnimations 
           wrapperStyle={{cursor: 'pointer', marginRight: '10px'}}
           animation={twitter} 

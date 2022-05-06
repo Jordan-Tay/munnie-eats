@@ -12,7 +12,8 @@ export const Recipes = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const sm = useMediaQuery(theme.breakpoints.only("sm"));
+  const md = useMediaQuery(theme.breakpoints.up("md"));
 
   const filterRecipe = (recipe) => {
     let updatedSearchParams = new URLSearchParams(searchParams.toString());
@@ -40,7 +41,7 @@ export const Recipes = () => {
   }, [searchParams]);
 
   return (
-    <div style={{ margin: matches ? '15px 80px' : '15px' }}>
+    <div style={{ margin: md ? '15px 80px' : sm ? '40px' : '15px' }}>
       <div style={{ marginBottom: '15px' }}>
         <Grid container spacing={2} justifyContent='space-between'>
           <Grid item md={3} sm={4} xs={12}>

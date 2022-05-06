@@ -40,24 +40,24 @@
   /* position: absolute; */
 }
 
+.homecard-description {
+  color: white;
+}
+
 .homecard-title {
-  font-size: 30px;
-  font-weight: bold;
+  /* font-size: var(--font-lg); */
+  font-weight: 1000;
   color: white;
   /* margin-right: 10px; */
   overflow-wrap: break-word;
   display: inline-block;
 }
 
-.homecard-description {
-  color: white;
-}
-
 .homecard-tag {
   display: table;
   backdrop-filter: blur(10px);
-  font-size: 20px;
+  /* font-size: var(--font-sm); */
   padding: 0 10px;
-  font-weight: 900;
+  font-weight: 1000;
   transition: 0.3s;
 }

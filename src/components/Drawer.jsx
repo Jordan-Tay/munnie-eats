@@ -7,7 +7,8 @@ import arrowUp from 'react-useanimations/lib/arrowUp';
 
 export const Drawer = ({ isOpen, setIsOpen }) => {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const sm = useMediaQuery(theme.breakpoints.only("sm"));
+  const md = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <MuiDrawer
@@ -18,7 +19,7 @@ export const Drawer = ({ isOpen, setIsOpen }) => {
       sx={{ position: 'relative', "& .MuiDrawer-paper": { borderWidth: 0 } }}
     >
       <div style={{ height: '82px', backgroundColor: '#ffe4e1' }} />
-      <div className='drawer-container' style={{ padding: matches ? '15px 65px' : '15px' }}>
+      <div className='drawer-container' style={{ padding: md ? '15px 65px' : sm ? '15px 25px' : '15px' }}>
         <List>
           <Link to='/' onClick={() => setIsOpen(false)}>
             <ListItem button key='Home'>

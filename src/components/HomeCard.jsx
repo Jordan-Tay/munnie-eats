@@ -1,22 +1,24 @@
 import { Tag } from '.';
 import PropTypes from "prop-types";
-import { Grid, ImageListItem, ImageListItemBar } from '@mui/material';
+import { Grid, ImageListItem, ImageListItemBar, useMediaQuery, useTheme } from '@mui/material';
 import './HomeCard.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 export const HomeCard = props => {
   const { id, image, title, homeTag, tags, description, recipeAvailable, size } = props;
+  const theme = useTheme();
+  const sm = useMediaQuery(theme.breakpoints.only("sm"));
   
   return (
-    <Grid item xs={12} sm={size === 'large' ? 8 : 4}>
+    <Grid item xs={12} sm={size === 'large' ? 8 : size === 'medium' ? 6 : 4}>
     <Link to={`/${id}`}>
       <div className='homecard-container'>
         <img className='homecard-image' src={image} alt={title} />
         <div className='homecard-content'>
-        {(homeTag || (tags && tags.length)) && <div className='homecard-tag' style={{ backgroundColor: recipeAvailable ? '#00808070' : '#ffffff70', color: recipeAvailable ? 'white' : 'black' }}>{homeTag || tags[0]}</div>}
+        {(homeTag || (tags && tags.length)) && <div className='homecard-tag' style={{ backgroundColor: recipeAvailable ? '#00808070' : '#ffffff70', color: recipeAvailable ? 'white' : 'black', fontSize: sm ? 'var(--font-xs)': 'var(--font-sm)' }}>{homeTag || tags[0]}</div>}
         <div className='homecard-title-container' style={{ backgroundColor: recipeAvailable ? '#B0E0E650' : 'rgba(0,0,0,0.5)' }}>
-          {title && <div className='homecard-title' style={{ color: recipeAvailable ? '#008080' : 'white' }}>
+          {title && <div className='homecard-title' style={{ color: recipeAvailable ? 'var(--recipe-secondary)' : 'white', fontSize: sm ? 'var(--font-md)' : 'var(--font-lg)' }}>
             {title}
           </div>}
           {description && <div className='homecard-description'>

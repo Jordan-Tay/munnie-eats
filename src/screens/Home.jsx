@@ -5,10 +5,11 @@ import { all } from '../data';
 
 export const Home = () => {
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.up("sm"));
+  const sm = useMediaQuery(theme.breakpoints.only("sm"));
+  const md = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <div style={{ margin: matches ? '15px 80px' : '15px' }}>
+    <div style={{ margin: md ? '15px 80px' : sm ? '15px 40px' : '15px' }}>
       <Grid container spacing={2}>
         {all.map(item => <HomeCard {...item} />)}
       </Grid>
