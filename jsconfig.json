@@ -4,7 +4,10 @@
     "target": "es6",
     "checkJs": true,
     "jsx": "react",
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "lib": [
+      "es5", "es6", "dom", "dom.iterable"
+    ]
   },
   "exclude": ["node_modules"]
 }

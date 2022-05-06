@@ -1,4 +1,4 @@
 export * from './About';
-export * from './Recipes';
+export * from './FoodList';
 export * from './Recipe';
 export * from './Home';

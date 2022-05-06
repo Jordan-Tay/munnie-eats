@@ -9,7 +9,8 @@ import { Link, useLocation } from 'react-router-dom';
 const pathnameMap = {
   '/': 'LATEST',
   '/about': 'ABOUT',
-  '/recipes': 'RECIPES'
+  '/recipes': 'RECIPES',
+  '/all': 'ALL',
 }
 
 export const Navbar = ({menuOpen, toggleMenu}) => {

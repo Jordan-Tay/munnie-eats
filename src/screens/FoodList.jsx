@@ -6,21 +6,21 @@ import React, { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
-export const Recipes = () => {
+export const FoodList = ({ list, tags, label, placeholder }) => {
   const [tagFilter, setTagFilter] = useState('');
-  const [recipeFilter, setRecipeFilter] = useState('');
+  const [searchFilter, setSearchFilter] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
 
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.only("sm"));
   const md = useMediaQuery(theme.breakpoints.up("md"));
 
-  const filterRecipe = (recipe) => {
+  const filterList = (value) => {
     let updatedSearchParams = new URLSearchParams(searchParams.toString());
-    if (!recipe) {
-      updatedSearchParams.delete('recipe');
+    if (!value) {
+      updatedSearchParams.delete('search');
     } else {
-      updatedSearchParams.set('recipe', recipe);
+      updatedSearchParams.set('search', value);
     }
     setSearchParams(updatedSearchParams.toString());
   }
@@ -37,7 +37,7 @@ export const Recipes = () => {
 
   useEffect(() => {
     setTagFilter(searchParams.get('tag') || '');
-    setRecipeFilter(searchParams.get('recipe') || '');
+    setSearchFilter(searchParams.get('search') || '');
   }, [searchParams]);
 
   return (
@@ -46,16 +46,14 @@ export const Recipes = () => {
         <Grid container spacing={2} justifyContent='space-between'>
           <Grid item md={3} sm={4} xs={12}>
             <TextField
-              placeholder='Search Recipes'
+              placeholder={placeholder}
               variant='standard'
               color='secondary'
-              onChange={e => filterRecipe(e.target.value)}
-              defaultValue={searchParams.get('recipe') || ''}
+              onChange={e => filterList(e.target.value)}
+              defaultValue={searchParams.get('search') || ''}
               focused
-              sx={{
-                width: '100%',
-              }}
-              label='Recipe'
+              fullWidth
+              label={label}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -66,15 +64,15 @@ export const Recipes = () => {
             />
           </Grid>
           <Grid item md={3} sm={4} xs={12}>
-            <Autocomplete defaultValue={searchParams.get('tag') || ''} onChange={(event, newValue) => filterTag(newValue)} options={recipeTags} renderInput={(params) => <TextField {...params} value={tagFilter} label="Tag" variant='standard' color='secondary' placeholder='All' focused sx={{ width: '100%' }} />} />
+            <Autocomplete defaultValue={searchParams.get('tag') || ''} onChange={(event, newValue) => filterTag(newValue)} options={tags} renderInput={(params) => <TextField {...params} value={tagFilter} label="Tag" variant='standard' color='secondary' placeholder='All' focused sx={{ width: '100%' }} />} />
           </Grid>
         </Grid>
       </div>
       <Grid container spacing={2}>
-        {recipes.filter(({ title, tags }) => (!tagFilter || tags.includes(tagFilter)) && title.toLowerCase().includes(recipeFilter.toLowerCase())).map(item => <Card {...item} />)}
+        {list.filter(({ title, tags }) => (!tagFilter || tags.includes(tagFilter)) && title.toLowerCase().includes(searchFilter.toLowerCase())).map(item => <Card {...item} />)}
       </Grid>
     </div >
   );
 }
 
-export default Recipes;
+export default FoodList;

@@ -19,7 +19,7 @@ export const Card = props => {
           </div>}
           {tags && tags.length && <div className='card-tags'>
             {tags.map(tag => (
-              <Tag content={tag} />
+              <Tag key={tag} content={tag} />
             ))}
           {recipeAvailable && <Tag content='Recipe Available' recipe />}
           </div>}
