@@ -1,18 +1,21 @@
 {
   "files": {
-    "main.css": "/munnie-eats/static/css/main.94bce907.css",
-    "main.js": "/munnie-eats/static/js/main.2afc2dd2.js",
+    "main.css": "/munnie-eats/static/css/main.9ad08733.css",
+    "main.js": "/munnie-eats/static/js/main.d80c5972.js",
     "static/media/gyudon.jpeg": "/munnie-eats/static/media/gyudon.06e8dc6b837cdd5b9773.jpeg",
     "static/media/profile.jpg": "/munnie-eats/static/media/profile.4b19d51e5b909b2737d6.jpg",
+    "static/media/katsu curry.jpeg": "/munnie-eats/static/media/katsu curry.d3a459a100a582595c0d.jpeg",
     "static/media/niku udon.webp": "/munnie-eats/static/media/niku udon.1eb8bcfcd122047ea5b1.webp",
+    "static/media/tamagoyaki.jpeg": "/munnie-eats/static/media/tamagoyaki.2a18cf10b040235f282d.jpeg",
     "static/media/teppan beef.jpeg": "/munnie-eats/static/media/teppan beef.88d005275f9d02042fa0.jpeg",
+    "static/media/tonkotsu.jpeg": "/munnie-eats/static/media/tonkotsu.228d5a652bebddd1f84d.jpeg",
     "static/media/eclair.jpeg": "/munnie-eats/static/media/eclair.b23301e822fcf56d0974.jpeg",
     "index.html": "/munnie-eats/index.html",
-    "main.94bce907.css.map": "/munnie-eats/static/css/main.94bce907.css.map",
-    "main.2afc2dd2.js.map": "/munnie-eats/static/js/main.2afc2dd2.js.map"
+    "main.9ad08733.css.map": "/munnie-eats/static/css/main.9ad08733.css.map",
+    "main.d80c5972.js.map": "/munnie-eats/static/js/main.d80c5972.js.map"
   },
   "entrypoints": [
-    "static/css/main.94bce907.css",
-    "static/js/main.2afc2dd2.js"
+    "static/css/main.9ad08733.css",
+    "static/js/main.d80c5972.js"
   ]
 }
