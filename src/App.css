@@ -24,3 +24,33 @@ a {
 .subtitle-text {
   white-space: nowrap;
 }
+
+li::marker {
+  font-weight: 1000;
+}
+
+.route-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.route-right {
+  transition-duration: 0.5s;
+  margin-right: 30px;
+}
+
+.route-left {
+  transition-duration: 0.5s;
+  margin-left: 30px;
+}
+
+.route-container:hover .route-right {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.route-container:hover .route-left {
+  margin-right: 10px;
+  margin-left: 10px;
+}

@@ -47,7 +47,7 @@
 }
 
 .card-tags {
-  margin: 10px 0px;
+  margin: 10px 0px 3px 0px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

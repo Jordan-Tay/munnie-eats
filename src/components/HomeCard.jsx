@@ -17,7 +17,7 @@ export const HomeCard = props => {
         <img className='homecard-image' src={image} alt={title} />
         <div className='homecard-content'>
         {(homeTag || (tags && tags.length)) && <div className='homecard-tag' style={{ backgroundColor: recipeAvailable ? '#00808070' : '#ffffff70', color: recipeAvailable ? 'white' : 'black', fontSize: sm ? 'var(--font-xs)': 'var(--font-sm)' }}>{homeTag || tags[0]}</div>}
-        <div className='homecard-title-container' style={{ backgroundColor: recipeAvailable ? '#B0E0E650' : 'rgba(0,0,0,0.5)' }}>
+        <div className='homecard-title-container' style={{ backgroundColor: recipeAvailable ? '#B0E0E680' : 'rgba(0,0,0,0.5)' }}>
           {title && <div className='homecard-title' style={{ color: recipeAvailable ? 'var(--recipe-secondary)' : 'white', fontSize: sm ? 'var(--font-md)' : 'var(--font-lg)' }}>
             {title}
           </div>}

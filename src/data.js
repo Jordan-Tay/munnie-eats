@@ -1,32 +1,27 @@
-const kebabCase = string => string
-      .replace(/([a-z])([A-Z])/g, "$1-$2")
-      .replace(/[\s_]+/g, '-')
-      .toLowerCase();
-
 const data = [
   {
     title: "Gyudon",
     homeTag: "Beef bowl",
-    tags: ["Japanese", "Lunch"],
+    tags: ["Japanese", "Beef"],
     image: "gyudon.jpeg",
     size: 'large'
   },
   {
     title: "Teppan Beef",
     homeTag: "Grill",
-    tags: ["Japanese", "Lunch"],
+    tags: ["Japanese", "Beef"],
     image: "teppan beef.jpeg"
   },
   {
     title: "Niku Udon",
     homeTag: "Worse than ramen",
-    tags: ["Japanese", "Lunch"],
+    tags: ["Japanese", "Udon", "Beef", "Soup"],
     image: "niku udon.webp"
   },
   {
     title: "Chocolate Eclair",
     homeTag: "Donut variant",
-    tags: ["Pastry"],
+    tags: ["Pastry", "Chocolate"],
     image: "eclair.jpeg",
     size: 'large',
     recipeAvailable: true,
@@ -88,27 +83,99 @@ const data = [
     ]
   },
   {
-    title: "Gyudon",
-    tags: ["Japanese", "Lunch"],
-    image: "gyudon.jpeg",
-    description: "Beef bowl!",
+    title: "Tamagoyaki",
+    tags: ["Japanese", "Eggs"],
+    homeTag: "Japanese Omelette",
+    image: "tamagoyaki.jpeg",
+    prepTime: "5 mins",
+    totalTime: "15 mins",
+    portions: "1",
+    recipeAvailable: true,
+    ingredients: [
+      "Eggs",
+      "Salt",
+      "Soy milk"
+    ],
+    instructions: [
+      'All ingredients in a bowl: Put eggs, soy milk, and salt in a medium bowl.',
+      'Make egg mixture: Mix well by cutting chunks of egg white.',
+      'Strain through a sieve: Strain the mixture through a sieve 2 to 3 times to make the mixture smooth.',
+      'Tamagoyaki pan: Heat a tamagoyaki pan over medium heat, add oil and wipe off excess oil with a paper towel.',
+      'First layer: Egg mixture is added in 3 times. Pour ⅓ of the egg mixture in an entire pan. If you see bubbles, poke with a chopstick to break them.',
+      'First roll: When the surface is still soft and the bottom is cooked well, roll it 3 to 4 times from the front to the end of the pan and move to the front. It\'s ok if the first roll is a little messy, as you can recover later.',
+      'Second layer: Add some oil if necessary, pour half of the egg mixture, lift the tamagoyaki and pour the mixture under the bottom. When the surface is almost cooked, roll it 3 to 4 times from the front and move to the front.',
+      'Third layer: Repeat step 7.'
+    ]
     // size: 'medium',
   },
   {
-    title: "Teppan Beef",
-    tags: ["Japanese", "Lunch"],
-    image: "teppan beef.jpeg",
+    title: "Chicken Katsu Curry",
+    homeTag: "GOAT",
+    tags: ["Japanese", "Chicken"],
+    image: "katsu curry.jpeg",
+    recipeAvailable: true,
+    prepTime: "5 mins",
+    totalTime: "35 mins",
+    portions: "6",
+    ingredients: {
+      'For the chicken': [
+        '650 g chicken breasts (£4.00)',
+        '70 g to 140g (6oz) panko breadcrumbs (if double dipping) (£1.25)',
+        '2 egg  (£1.39/12)=(£0.24)'
+      ],
+      'For the sauce': [
+        '1 tbsp ginger, peeled & grated (£0.55)',
+        '2 onions, diced (£0.65/3)=(£0.22)',
+        '1 carrot, thinly sliced (£0.09)',
+        '3 cloves of garlic, minced (£0.69/3)=(£0.23)',
+        '600 ml chicken stock',
+        '1 tbsp honey/brown sugar',
+        '1.5 tbsp curry powder',
+        '½ tsp turmeric',
+        '1 tbsp coconut oil',
+        '2 tbsp rapeseed oil',
+        '1.5 tbsp soy sauce',
+        '2 tbsp flour',
+      ],
+      'Other ingredients': [
+        'Other 300g white/brown rice (£1.50/5X3)=(£0.90)',
+        'Spring onions to garnish (£0.50)',
+        'Chilli flakes',
+      ]
+    },
+    instructions: [
+      'Start by adding the onion & carrots into a deep non-stick frying pan along with the coconut oil. Gently fry on a medium/ low heat for around 5 minutes. Season with salt.',
+      'After this time, add the minced garlic, curry powder, ginger, turmeric, honey, soy sauce and flour with a splash of the chicken stock. Gently fry for another minute before gradually adding all of the chicken stock. Reduce to a simmer and set the timer for 20 minutes.',
+      'Meanwhile, prepare the chicken by slicing the 3 breasts along the width to create 6 thin chicken pieces. Start the crispy chicken conveyor belt by rolling it in flour, then the beaten egg and finally in the breadcrumbs. If you want the crispiest chicken, dip into the egg and breadcrumbs one more time (may require more breadcrumbs).',
+      'Drizzle half of the rapeseed oil onto a large baking try and add the battered chicken. Then drizzle the remaining rapeseed oil over the top to coat. Pop in the oven, timer set to 12 minutes to rotate and cook for a further 12 minutes on the other side.',
+      'In the meantime, cook the rice according to packet instructions',
+      'After 20 minutes, the katsu sauce should have thickened slightly so it\'s ready to blend. Slice the chicken diagonally for that wagamama look and serve up with a portion of rice, a ladle of the sauce and the optional sliced spring onion & chilli flakes.',
+    ]
     // size: 'medium',
   },
   {
-    title: "Niku Udon",
-    tags: ["Japanese", "Lunch"],
-    image: "niku udon.webp",
+    title: "Tonkotsu Ramen",
+    homeTag: "GOAT",
+    tags: ["Japanese", "Ramen", "Pork"],
+    image: "tonkotsu.jpeg",
     // size: 'medium',
   },
-].map(item => ({ ...item, image: item.image ? require(`./images/${item.image}`) : undefined, id: kebabCase(item.title) }));
+]
 
-export const all = data;
-export const recipes = data.filter(({ recipeAvailable }) => recipeAvailable);
+const kebabCase = string => string
+      .replace(/([a-z])([A-Z])/g, "$1-$2")
+      .replace(/[\s_]+/g, '-')
+      .toLowerCase();
+
+let recipeIndex = 0;
+const augmentedData = data.map(item => ({ 
+  ...item, 
+  image: item.image ? require(`./images/${item.image}`) : undefined, 
+  id: kebabCase(item.title), 
+  recipeIndex: item.recipeAvailable ? recipeIndex++ : -1 
+}));
+
+export const all = augmentedData;
+export const recipes = augmentedData.filter(({ recipeAvailable }) => recipeAvailable);
 export const tags = [...new Set(all.map(({ tags }) => tags).flat(1))].sort();
 export const recipeTags = [...new Set(recipes.map(({ tags }) => tags).flat(1))].sort();

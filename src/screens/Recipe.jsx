@@ -1,15 +1,20 @@
-import { ExpandLess, ExpandMore, Restaurant, Timer } from "@mui/icons-material";
+import { ArrowBackIosNew, ArrowForwardIos, ExpandLess, ExpandMore, Restaurant, Timer } from "@mui/icons-material";
 import ShareIcon from "@mui/icons-material/Share";
-import { Collapse, Divider, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Snackbar, Tooltip } from "@mui/material";
+import { Collapse, Divider, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Snackbar, Tooltip, useTheme, useMediaQuery } from "@mui/material";
+import classNames from "classnames";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { all } from '../data';
+import { Link, useParams } from "react-router-dom";
+import { all, recipes } from '../data';
 
 export const Recipe = () => {
   const { id } = useParams();
   const [item, setItem] = useState(null);
   const [open, setOpen] = useState(false);
   const [ingredientsOpen, setIngredientsOpen] = useState([]);
+
+  const theme = useTheme();
+  const sm = useMediaQuery(theme.breakpoints.only("sm"));
+  const md = useMediaQuery(theme.breakpoints.up("md"));
 
   useEffect(() => {
     if (!id) {
@@ -21,14 +26,14 @@ export const Recipe = () => {
     if (ingredients && !Array.isArray(ingredients)) {
       setIngredientsOpen(Array(Object.keys(ingredients).length).fill(true));
     }
-    setItem(newItem); 
+    setItem(newItem);
   }, [id]);
 
   if (!item) {
     return <div />;
   }
 
-  const { title, tags, image, prepTime, totalTime, portions, ingredients, instructions } = item;
+  const { title, tags, image, prepTime, totalTime, portions, ingredients, instructions, recipeAvailable, recipeIndex } = item;
 
   return (
     <div style={{ margin: '15px' }}>
@@ -61,13 +66,13 @@ export const Recipe = () => {
               <span className='subtitle-text'>Yield: {portions}</span>
             </div>}
           </div>
-          {ingredients && 
+          {ingredients &&
             <div className='recipe-section'>
               <Divider />
               <h2>Ingredients</h2>
-              {Array.isArray(ingredients) 
+              {Array.isArray(ingredients)
                 ? <List disablePadding sx={{ listStyle: 'inside' }}>{ingredients.map(ingredient => <ListItem sx={{ display: 'list-item' }}>{ingredient}</ListItem>)}</List>
-                : Object.keys(ingredients).map((part, i) => 
+                : Object.keys(ingredients).map((part, i) =>
                   <div>
                     <ListItemButton onClick={() => {
                       let newIngredientsOpen = ingredientsOpen;
@@ -86,18 +91,48 @@ export const Recipe = () => {
                     </Collapse>
                   </div>)}
             </div>}
-          {instructions && 
+          {instructions &&
             <div>
               <Divider />
               <h2>Instructions</h2>
-              <List disablePadding sx={{ listStyle: 'inside' }}>
+              <List disablePadding sx={{ listStyle: 'roman inside' }}>
                 {instructions.map(instruction => <ListItem sx={{ display: 'list-item' }}>{instruction}</ListItem>)}
               </List>
             </div>}
         </Grid>
       </Grid>
+      {recipeAvailable && <Grid container alignItems='center' sx={{ margin: '15px 0px' }}>
+        <Grid container item xs={6} justifyContent='flex-start' alignItems='center'>
+          {recipeIndex > 0 &&
+            <Link to={`/${recipes[recipeIndex - 1].id}`}>
+              <div className='route-container'>
+                <div className={classNames({'route-left': sm || md})}>
+                  <ArrowBackIosNew />
+                </div>
+                <div style={{ display: 'inline-block', position: 'relative', marginLeft: '10px' }}>
+                  <div style={{ position: 'absolute', left: 0 }}>Previous Recipe</div>
+                  <h2 style={{ textAlign: 'start' }}>{recipes[recipeIndex - 1].title}</h2>
+                </div>
+              </div>
+            </Link>}
+        </Grid>
+        <Grid container item xs={6} justifyContent='flex-end' alignItems='center'>
+          {recipeIndex < recipes.length - 1 &&
+            <Link to={`/${recipes[recipeIndex + 1].id}`}>
+              <div className='route-container'>
+                <div style={{ display: 'inline-block', position: 'relative', marginRight: '10px' }}>
+                  <div style={{ position: 'absolute', right: 0 }}>Next Recipe</div>
+                  <h2 style={{ textAlign: 'end' }}>{recipes[recipeIndex + 1].title}</h2>
+                </div>
+                <div className={classNames({'route-right': sm || md})}>
+                  <ArrowForwardIos />
+                </div>
+              </div>
+            </Link>}
+        </Grid>
+      </Grid>}
     </div>
-  ); 
+  );
 }
 
 export default Recipe;
