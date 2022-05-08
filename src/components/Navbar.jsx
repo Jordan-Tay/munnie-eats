@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './Navbar.css';
 import { AppBar, useMediaQuery, useTheme } from '@mui/material';
 import UseAnimations from 'react-useanimations';

@@ -1,6 +1,5 @@
 import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
-import { useLocation } from "react-router-dom";
 import UseAnimations from "react-useanimations";
 import instagram from "react-useanimations/lib/instagram";
 import twitter from "react-useanimations/lib/twitter";
@@ -8,7 +7,6 @@ import facebook from "react-useanimations/lib/facebook";
 import profile from "../images/profile.jpg";
 
 export const About = () => {
-  const location = useLocation();
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.only("sm"));
   const md = useMediaQuery(theme.breakpoints.up("md"));

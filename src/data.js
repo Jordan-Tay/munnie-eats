@@ -4,47 +4,22 @@ const data = [
     homeTag: "Beef bowl",
     tags: ["Japanese", "Beef"],
     image: "gyudon.jpeg",
-    size: 'large'
   },
   {
     title: "Teppan Beef",
     homeTag: "Grill",
     tags: ["Japanese", "Beef"],
-    image: "teppan beef.jpeg"
-  },
-  {
-    title: "Niku Udon",
-    homeTag: "Worse than ramen",
-    tags: ["Japanese", "Udon", "Beef", "Soup"],
-    image: "niku udon.webp"
+    image: "teppan beef.jpeg",
   },
   {
     title: "Chocolate Eclair",
     homeTag: "Donut variant",
     tags: ["Pastry", "Chocolate"],
     image: "eclair.jpeg",
-    size: 'large',
     recipeAvailable: true,
     prepTime: '15 mins',
     totalTime: '1 hour',
     portions: '24',
-    // ingredients: [
-    //   '140g plain flour',
-    //   'pinch of sugar',
-    //   '125ml milk',
-    //   '100g butter',
-    //   '4 eggs',
-    //   '300ml milk',
-    //   '50g caster sugar',
-    //   '2 egg yolks',
-    //   '1 tsp vanilla extract',
-    //   '4 tsp plain flour',
-    //   '4 tsp cornflour',
-    //   '375ml double cream',
-    //   '100g plain chocolate',
-    //   '25g butter',
-    //   '1 tbsp icing sugar',
-    // ],
     ingredients: {
       'For the pastry': [
         '140g plain flour',
@@ -83,10 +58,17 @@ const data = [
     ]
   },
   {
+    title: "Niku Udon",
+    homeTag: "Worse than ramen",
+    tags: ["Japanese", "Udon", "Beef", "Soup"],
+    image: "niku udon.webp"
+  },
+  {
     title: "Tamagoyaki",
     tags: ["Japanese", "Eggs"],
     homeTag: "Japanese Omelette",
     image: "tamagoyaki.jpeg",
+    size: 'large',
     prepTime: "5 mins",
     totalTime: "15 mins",
     portions: "1",
@@ -168,12 +150,15 @@ const kebabCase = string => string
       .toLowerCase();
 
 let recipeIndex = 0;
-const augmentedData = data.map(item => ({ 
-  ...item, 
-  image: item.image ? require(`./images/${item.image}`) : undefined, 
-  id: kebabCase(item.title), 
-  recipeIndex: item.recipeAvailable ? recipeIndex++ : -1 
-}));
+let augmentedData = [...new Map(data.map(item => { 
+  const id = kebabCase(item.title);
+  return [id, {
+    ...item, 
+    id,
+    image: item.image ? require(`./images/${item.image}`) : undefined, 
+    recipeIndex: item.recipeAvailable ? recipeIndex++ : -1 
+  }]
+})).values()];
 
 export const all = augmentedData;
 export const recipes = augmentedData.filter(({ recipeAvailable }) => recipeAvailable);

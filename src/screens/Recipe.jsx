@@ -33,7 +33,7 @@ export const Recipe = () => {
     return <div />;
   }
 
-  const { title, tags, image, prepTime, totalTime, portions, ingredients, instructions, recipeAvailable, recipeIndex } = item;
+  const { title, image, prepTime, totalTime, portions, ingredients, instructions, recipeAvailable, recipeIndex } = item;
 
   return (
     <div style={{ margin: '15px' }}>
@@ -71,9 +71,9 @@ export const Recipe = () => {
               <Divider />
               <h2>Ingredients</h2>
               {Array.isArray(ingredients)
-                ? <List disablePadding sx={{ listStyle: 'inside' }}>{ingredients.map(ingredient => <ListItem sx={{ display: 'list-item' }}>{ingredient}</ListItem>)}</List>
+                ? <List disablePadding sx={{ listStyle: 'inside' }}>{ingredients.map((ingredient, i) => <ListItem key={i} sx={{ display: 'list-item' }}>{ingredient}</ListItem>)}</List>
                 : Object.keys(ingredients).map((part, i) =>
-                  <div>
+                  <div key={i}>
                     <ListItemButton onClick={() => {
                       let newIngredientsOpen = ingredientsOpen;
                       newIngredientsOpen[i] = !newIngredientsOpen[i];
@@ -86,7 +86,7 @@ export const Recipe = () => {
                     </ListItemButton>
                     <Collapse in={ingredientsOpen[i]} unmountOnExit>
                       <List disablePadding sx={{ listStyle: 'inside' }}>
-                        {ingredients[part].map(ingredient => <ListItem sx={{ display: 'list-item' }}>{ingredient}</ListItem>)}
+                        {ingredients[part].map((ingredient, i) => <ListItem key={i} sx={{ display: 'list-item' }}>{ingredient}</ListItem>)}
                       </List>
                     </Collapse>
                   </div>)}
@@ -95,8 +95,8 @@ export const Recipe = () => {
             <div>
               <Divider />
               <h2>Instructions</h2>
-              <List disablePadding sx={{ listStyle: 'roman inside' }}>
-                {instructions.map(instruction => <ListItem sx={{ display: 'list-item' }}>{instruction}</ListItem>)}
+              <List disablePadding sx={{ listStyle: 'inside', listStyleType: 'decimal' }}>
+                {instructions.map((instruction, i) => <ListItem key={i} sx={{ display: 'list-item' }}>{instruction}</ListItem>)}
               </List>
             </div>}
         </Grid>
@@ -110,7 +110,7 @@ export const Recipe = () => {
                   <ArrowBackIosNew />
                 </div>
                 <div style={{ display: 'inline-block', position: 'relative', marginLeft: '10px' }}>
-                  <div style={{ position: 'absolute', left: 0 }}>Previous Recipe</div>
+                  <div style={{ position: 'absolute', left: 0, whiteSpace: 'nowrap' }}>Previous Recipe</div>
                   <h2 style={{ textAlign: 'start' }}>{recipes[recipeIndex - 1].title}</h2>
                 </div>
               </div>
@@ -121,7 +121,7 @@ export const Recipe = () => {
             <Link to={`/${recipes[recipeIndex + 1].id}`}>
               <div className='route-container'>
                 <div style={{ display: 'inline-block', position: 'relative', marginRight: '10px' }}>
-                  <div style={{ position: 'absolute', right: 0 }}>Next Recipe</div>
+                  <div style={{ position: 'absolute', right: 0, whiteSpace: 'nowrap' }}>Next Recipe</div>
                   <h2 style={{ textAlign: 'end' }}>{recipes[recipeIndex + 1].title}</h2>
                 </div>
                 <div className={classNames({'route-right': sm || md})}>

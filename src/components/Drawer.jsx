@@ -2,8 +2,6 @@ import { Drawer as MuiDrawer, List, ListItem, ListItemText, useMediaQuery, useTh
 import './Drawer.css';
 import { Link } from 'react-router-dom';
 import React from 'react';
-import UseAnimations from 'react-useanimations';
-import arrowUp from 'react-useanimations/lib/arrowUp';
 
 export const Drawer = ({ isOpen, setIsOpen }) => {
   const theme = useTheme();

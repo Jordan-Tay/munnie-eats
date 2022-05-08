@@ -1,6 +1,6 @@
 import { Button, Grid, InputAdornment, TextField, useMediaQuery, useTheme } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { Card, HomeCard } from "../components";
+import React, { useState } from "react";
+import { HomeCard } from "../components";
 import { all } from '../data';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link, useNavigate } from "react-router-dom";
@@ -16,7 +16,7 @@ export const Home = () => {
     <div style={{ margin: md ? '15px 80px' : sm ? '15px 40px' : '15px' }}>
       <div style={{ marginBottom: '15px' }}>
       <Grid container spacing={2}>
-        {all.map(item => <HomeCard {...item} />)}
+        {all.map(item => <HomeCard key={item.id} {...item} />)}
       </Grid>
       </div>
         <Grid container spacing={2}>
