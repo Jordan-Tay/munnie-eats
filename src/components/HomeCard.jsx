@@ -5,17 +5,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
+const COLUMN_SIZE = 4;
+const ROW_GAP = 16
+
 export const HomeCard = props => {
-  const { id, image, title, homeTag, tags, description, recipeAvailable, size } = props;
+  const { id, image, title, homeTag, tags, description, recipeAvailable, columns, rows } = props;
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.only("sm"));
   const md = useMediaQuery(theme.breakpoints.up("md"));
+  let ROW_SIZE = sm ? 89 : 123;
   
   return (
-    <Grid item xs={12} sm={size === 'large' ? 8 : size === 'medium' ? 6 : 4}>
+    <Grid item xs={12} sm={COLUMN_SIZE * columns}>
     <Link to={`/${id}`}>
       <div className='homecard-container'>
-        <img className={classNames('homecard-image', {'animate-homecard-image': sm || md})} src={image} alt={title} />
+        <img height={sm || md ? `${ROW_SIZE * rows + ROW_GAP * (rows - 1)}px` : '400px'} className={classNames('homecard-image', {'animate-homecard-image': sm || md})} src={image} alt={title} />
         <div className='homecard-content'>
         {(homeTag || (tags && tags.length)) && <div className='homecard-tag' style={{ backgroundColor: recipeAvailable ? '#00808070' : '#ffffff70', color: recipeAvailable ? 'white' : 'black', fontSize: sm ? 'var(--font-xs)': 'var(--font-sm)' }}>{homeTag || tags[0]}</div>}
         <div className='homecard-title-container' style={{ backgroundColor: recipeAvailable ? '#B0E0E680' : 'rgba(0,0,0,0.5)' }}>
@@ -46,7 +50,8 @@ HomeCard.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string),
   description: PropTypes.string,
   recipeAvailable: PropTypes.bool,
-  size: PropTypes.oneOf(['large', 'medium', 'small'])
+  columns: PropTypes.number,
+  rows: PropTypes.number,
 }
 
 export default HomeCard;

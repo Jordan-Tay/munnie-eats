@@ -1,3 +1,6 @@
+const columns = [1, 1, 1, 1, 2, 1, 1, 1];
+const rows    = [3, 3, 3, 4, 4, 3, 3, 3];
+
 const data = [
   {
     title: "Gyudon",
@@ -68,7 +71,6 @@ const data = [
     tags: ["Japanese", "Eggs"],
     homeTag: "Japanese Omelette",
     image: "tamagoyaki.jpeg",
-    size: 'large',
     prepTime: "5 mins",
     totalTime: "15 mins",
     portions: "1",
@@ -88,7 +90,6 @@ const data = [
       'Second layer: Add some oil if necessary, pour half of the egg mixture, lift the tamagoyaki and pour the mixture under the bottom. When the surface is almost cooked, roll it 3 to 4 times from the front and move to the front.',
       'Third layer: Repeat step 7.'
     ]
-    // size: 'medium',
   },
   {
     title: "Chicken Katsu Curry",
@@ -133,14 +134,12 @@ const data = [
       'In the meantime, cook the rice according to packet instructions',
       'After 20 minutes, the katsu sauce should have thickened slightly so it\'s ready to blend. Slice the chicken diagonally for that wagamama look and serve up with a portion of rice, a ladle of the sauce and the optional sliced spring onion & chilli flakes.',
     ]
-    // size: 'medium',
   },
   {
     title: "Tonkotsu Ramen",
     homeTag: "GOAT",
     tags: ["Japanese", "Ramen", "Pork"],
     image: "tonkotsu.jpeg",
-    // size: 'medium',
   },
 ]
 
@@ -164,3 +163,4 @@ export const all = augmentedData;
 export const recipes = augmentedData.filter(({ recipeAvailable }) => recipeAvailable);
 export const tags = [...new Set(all.map(({ tags }) => tags).flat(1))].sort();
 export const recipeTags = [...new Set(recipes.map(({ tags }) => tags).flat(1))].sort();
+export const sizes = Array.from(Array(Math.max(rows.length, columns.length)), (_, i) => [rows[i] || 3, columns[i]] || 1).slice(0, all.length);
