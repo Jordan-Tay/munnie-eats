@@ -89,9 +89,10 @@ export const FoodList = ({ list, tags, label, placeholder }) => {
       <Grid container spacing={2}>
         {filteredList.slice(startIndex, startIndex + PAGE_SIZE).map(item => <Card key={item.id} {...item} />)}
       </Grid>
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '15px' }}>
-        {pages > 1 && <Pagination color='secondary' shape='rounded' variant='outlined' size='large' count={pages} onChange={(event, value) => selectPage(value)} page={page} />}
-      </div>
+      {pages > 1 && 
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '15px' }}>
+          <Pagination color='secondary' shape='rounded' variant='outlined' size='large' count={pages} onChange={(event, value) => selectPage(value)} page={page} />
+        </div>}
     </div >
   );
 }
