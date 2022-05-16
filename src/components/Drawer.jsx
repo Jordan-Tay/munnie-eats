@@ -1,22 +1,25 @@
-import { Drawer as MuiDrawer, List, ListItem, ListItemText, useMediaQuery, useTheme } from '@mui/material';
+import { Drawer as MuiDrawer, List, ListItem, ListItemText, SwipeableDrawer, useMediaQuery, useTheme } from '@mui/material';
 import './Drawer.css';
 import { Link } from 'react-router-dom';
 import React from 'react';
 
-export const Drawer = ({ isOpen, setIsOpen }) => {
+export const Drawer = ({ isOpen, setIsOpen, paddingTop }) => {
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.only("sm"));
   const md = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <MuiDrawer
+    <SwipeableDrawer
       open={isOpen}
       anchor='top'
       onClose={() => setIsOpen(false)}
+      onOpen={() => setIsOpen(true)}
       variant='temporary'
-      sx={{ position: 'relative', "& .MuiDrawer-paper": { borderWidth: 0 } }}
+      disableSwipeToOpen={false}
+      swipeAreaWidth={20}
+      // sx={{ "& .MuiDrawer-paper": { borderWidth: 0, top: `${paddingTop}px` } }}
     >
-      <div style={{ height: '82px', backgroundColor: '#ffe4e1' }} />
+      <div style={{ height: paddingTop, backgroundColor: '#ffe4e1' }} />
       <div className='drawer-container' style={{ padding: md ? '15px 65px' : sm ? '15px 25px' : '15px' }}>
         <List>
           <Link to='/' onClick={() => setIsOpen(false)}>
@@ -38,7 +41,7 @@ export const Drawer = ({ isOpen, setIsOpen }) => {
         {/* <UseAnimations animation={arrowUp} wrapperStyle={{ position: 'absolute', top: '20px', right: '20px' }} />
         <div style={{ position: 'absolute', top: '50px', right: '20px' }}>Eh follow me la</div> */}
       </div>
-    </MuiDrawer>
+    </SwipeableDrawer>
   );
 }
 

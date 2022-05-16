@@ -13,15 +13,15 @@ const pathnameMap = {
   '/all': 'ALL',
 }
 
-export const Navbar = ({menuOpen, toggleMenu}) => {
+export const Navbar = ({ menuOpen, toggleMenu, navRef }) => {
   const location = useLocation();
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.only("sm"));
   const md = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <AppBar sx={{ position: 'relative', zIndex: (theme) => theme.zIndex.drawer + 1 }} elevation={0}>
-    <div className='nav'>
+    <AppBar sx={{ position: md ? 'sticky' : 'relative', zIndex: (theme) => theme.zIndex.drawer + 1 }} elevation={0}>
+    <div className='nav' ref={navRef}>
       {/* <div style={{display: 'flex', alignItems: 'center'}}> */}
         <UseAnimations 
           wrapperStyle={{cursor: 'pointer', position: 'absolute', left: md ? '75px' : sm ? '35px' : '10px', top: '20px'}}
