@@ -13,7 +13,11 @@
 .title {
   font-size: var(--font-xxl);
   font-weight: bold;
+  display: flex;
+  align-items: center;
   color: black;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .pathname {
@@ -21,4 +25,5 @@
   /* font-style: italic; */
   color: var(--secondary);
   margin-left: 25px;
+  vertical-align: middle;
 }

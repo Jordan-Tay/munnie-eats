@@ -7,10 +7,10 @@ import instagram from 'react-useanimations/lib/instagram';
 import { Link, useLocation } from 'react-router-dom';
 
 const pathnameMap = {
-  '/': 'LATEST',
-  '/about': 'ABOUT',
-  '/recipes': 'RECIPES',
-  '/all': 'ALL',
+  '/': ' LATEST',
+  '/about': ' ABOUT',
+  '/recipes': ' RECIPES',
+  '/all': ' ALL',
 }
 
 export const Navbar = ({ menuOpen, toggleMenu, navRef }) => {
@@ -32,12 +32,12 @@ export const Navbar = ({ menuOpen, toggleMenu, navRef }) => {
         />
         <Link to='/'>
           {/* <div className='title' style={{marginLeft: '10px'}}> */}
-          <h1>
+          <div className='title'>
             Munnie Eats
-            {(sm || md) && <span className='pathname'>
+            {location.pathname !== '/404' && (sm || md) && <span className='pathname'>
               {pathnameMap[location.pathname] || 'RECIPES'}
             </span>}
-          </h1>
+          </div>
           {/* </div> */}
         </Link>
       {/* </div> */}

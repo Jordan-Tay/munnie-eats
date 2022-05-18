@@ -6,7 +6,7 @@ import { ThemeProvider } from '@emotion/react';
 import { useState } from 'react';
 import { all, recipes, recipeTags, tags } from './data';
 import { Route, Routes } from 'react-router-dom';
-import { About, FoodList, Recipe, Home } from './screens';
+import { About, FoodList, Recipe, Home, ErrorScreen } from './screens';
 
 let theme = createTheme({
   typography: {
@@ -37,7 +37,9 @@ function App() {
           <Route path='/about' element={<About />} />
           <Route path='/all' element={<FoodList list={all} tags={tags} label='Search' placeholder='Search Posts' />} />
           <Route path='/recipes' element={<FoodList list={recipes} tags={recipeTags} label='Recipe' placeholder='Search Recipes' />} />
+          <Route path='/404' element={<ErrorScreen />} />
           <Route path='/:id' element={<Recipe />} />
+          <Route path='*' element={<ErrorScreen />} />
         </Routes>
       </div>
     </ThemeProvider>

@@ -3,7 +3,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import { Collapse, Divider, Grid, IconButton, List, ListItem, ListItemButton, ListItemText, Snackbar, Tooltip, useTheme, useMediaQuery } from "@mui/material";
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { all, recipes } from '../data';
 
 export const Recipe = () => {
@@ -11,6 +11,8 @@ export const Recipe = () => {
   const [item, setItem] = useState(null);
   const [open, setOpen] = useState(false);
   const [ingredientsOpen, setIngredientsOpen] = useState([]);
+
+  const navigate = useNavigate();
 
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.only("sm"));
@@ -22,12 +24,19 @@ export const Recipe = () => {
     }
 
     let newItem = all.find(({ id: _id }) => _id === id);
+
+    if (!newItem) {
+      navigate('/404');
+      return;
+    }
+
+    setItem(newItem);
+
     let { ingredients } = newItem;
     if (ingredients && !Array.isArray(ingredients)) {
       setIngredientsOpen(Array(Object.keys(ingredients).length).fill(true));
     }
-    setItem(newItem);
-  }, [id]);
+  }, [id, navigate]);
 
   if (!item) {
     return <div />;
@@ -105,7 +114,7 @@ export const Recipe = () => {
         <Grid container item xs={6} justifyContent='flex-start' alignItems='center'>
           {recipeIndex > 0 &&
             <Link to={`/${recipes[recipeIndex - 1].id}`}>
-              <div className='route-container'>
+              <div className='route-container route-left-container'>
                 <div className={classNames({'route-left': sm || md})}>
                   <ArrowBackIosNew />
                 </div>
@@ -119,7 +128,7 @@ export const Recipe = () => {
         <Grid container item xs={6} justifyContent='flex-end' alignItems='center'>
           {recipeIndex < recipes.length - 1 &&
             <Link to={`/${recipes[recipeIndex + 1].id}`}>
-              <div className='route-container'>
+              <div className='route-container route-right-container'>
                 <div style={{ display: 'inline-block', position: 'relative', marginRight: '10px' }}>
                   <div style={{ position: 'absolute', right: 0, whiteSpace: 'nowrap' }}>Next Recipe</div>
                   <h2 style={{ textAlign: 'end' }}>{recipes[recipeIndex + 1].title}</h2>
