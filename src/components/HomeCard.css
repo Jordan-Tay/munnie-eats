@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
   cursor: pointer;
   width: 100%;
@@ -31,16 +31,19 @@
   display: table;
 }
 
+.homecard-image-container {
+  overflow: hidden;
+  width: 100%;
+  display: inline-block;
+}
+
 .homecard-image {
   width: 100%;
   object-fit: cover;
   transition: 0.3s;
   display: block;
-  /* position: absolute; */
-}
-
-.homecard-description {
-  color: white;
+  z-index: -1;
+  position: relative;
 }
 
 .homecard-title {
@@ -59,4 +62,21 @@
   padding: 0 10px;
   font-weight: 1000;
   transition: 0.3s;
+}
+
+.homecard-description-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 60px 0px;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+
+.homecard-description {
+  text-align: center;
+  line-height: 100%;
+  margin: 15px 30px 0px;
 }

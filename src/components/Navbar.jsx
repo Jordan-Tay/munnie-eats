@@ -20,7 +20,7 @@ export const Navbar = ({ menuOpen, toggleMenu, navRef }) => {
   const md = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <AppBar sx={{ position: md ? 'sticky' : 'relative', zIndex: (theme) => theme.zIndex.drawer + 1 }} elevation={0}>
+    <AppBar sx={{ position: md ? 'sticky' : 'relative', background: 'none', zIndex: (theme) => theme.zIndex.drawer + 1 }} elevation={0}>
     <div className='nav' ref={navRef}>
       {/* <div style={{display: 'flex', alignItems: 'center'}}> */}
         <UseAnimations 

@@ -3,7 +3,9 @@
   justify-content: center;
   align-items: center;
   /* padding: 20px; */
-  background-color: var(--primary);
+  /* background-color: var(--primary); */
+  background-color: #ffe4e1aa;
+  backdrop-filter: blur(15px);
   height: 80px;
   border-style: solid;
   border-color: var(--secondary);

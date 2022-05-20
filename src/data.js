@@ -63,6 +63,7 @@ const data = [
   {
     title: "Niku Udon",
     homeTag: "Worse than ramen",
+    homeDescription: "If you're looking to have some delicious noodles with marinated meat in a flavourful broth, go for the ramen instead.",
     tags: ["Japanese", "Udon", "Beef", "Soup"],
     image: "niku udon.webp"
   },
@@ -94,6 +95,7 @@ const data = [
   {
     title: "Chicken Katsu Curry",
     homeTag: "GOAT",
+    homeDescription: "One of my personal favourites, a godly combination beyond your imagination, fried chicken and curry.",
     tags: ["Japanese", "Chicken"],
     image: "katsu curry.jpeg",
     recipeAvailable: true,

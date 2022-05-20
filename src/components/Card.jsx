@@ -26,7 +26,7 @@ export const Card = props => {
             {tags.map(tag => (
               <Tag key={tag} content={tag} />
             ))}
-          {recipeAvailable && <Tag content='Recipe Available' recipe />}
+          {recipeAvailable && <Tag recipe />}
           </div>}
         </div>
       </div>

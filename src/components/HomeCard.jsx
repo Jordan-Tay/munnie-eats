@@ -4,41 +4,45 @@ import './HomeCard.css';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import { Ribbon } from ".";
 
 const COLUMN_SIZE = 4;
 const ROW_GAP = 16
 
 export const HomeCard = props => {
-  const { id, image, title, homeTag, tags, description, recipeAvailable, columns, rows } = props;
+  const { id, image, title, homeTag, tags, homeDescription, recipeAvailable, columns, rows } = props;
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.only("sm"));
   const md = useMediaQuery(theme.breakpoints.up("md"));
   let ROW_SIZE = sm ? 89 : 123;
-  
+
   return (
     <Grid item xs={12} sm={COLUMN_SIZE * columns}>
-    <Link to={`/${id}`}>
-      <div className='homecard-container'>
-        <img height={sm || md ? `${ROW_SIZE * rows + ROW_GAP * (rows - 1)}px` : '400px'} className={classNames('homecard-image', {'animate-homecard-image': sm || md})} src={image} alt={title} />
-        <div className='homecard-content'>
-        {(homeTag || (tags && tags.length)) && <div className='homecard-tag' style={{ backgroundColor: recipeAvailable ? '#00808070' : '#ffffff70', color: recipeAvailable ? 'white' : 'black', fontSize: sm ? 'var(--font-xs)': 'var(--font-sm)' }}>{homeTag || tags[0]}</div>}
-        <div className='homecard-title-container' style={{ backgroundColor: recipeAvailable ? '#B0E0E680' : 'rgba(0,0,0,0.5)' }}>
-          {title && <div className='homecard-title' style={{ color: recipeAvailable ? 'var(--recipe-secondary)' : 'white', fontSize: sm ? 'var(--font-md)' : 'var(--font-lg)' }}>
-            {title}
+      <Link to={`/${id}`}>
+        <div className='homecard-container'>
+          <div className='homecard-image-container' style={homeDescription ? { background: `linear-gradient(to bottom, ${recipeAvailable ? '#19547bcc, #ffd89bee' : '#faaca8cc, #ddd6f3ee'})` } : {}}>
+            <img height={sm || md ? `${ROW_SIZE * rows + ROW_GAP * (rows - 1)}px` : '400px'} className={classNames('homecard-image', { 'animate-homecard-image': sm || md })} src={image} alt={title} />
+          </div>
+          {!homeDescription && <div className='homecard-content'>
+            {(homeTag || (tags && tags.length)) && <div className='homecard-tag' style={{ backgroundColor: recipeAvailable ? '#00506070' : '#ffffff70', color: recipeAvailable ? 'white' : 'black', fontSize: sm ? 'var(--font-xs)' : 'var(--font-sm)' }}>{homeTag || tags[0]}</div>}
+            <div className='homecard-title-container' style={{ backgroundColor: recipeAvailable ? '#b0e0e680' : 'rgba(0,0,0,0.5)' }}>
+              {title && <div className='homecard-title' style={{ color: recipeAvailable ? 'var(--recipe-secondary)' : 'white', fontSize: sm ? 'var(--font-md)' : 'var(--font-lg)' }}>
+                {title}
+              </div>}
+            </div>
           </div>}
-          {description && <div className='homecard-description'>
-            {description}
+          {homeDescription && <div className='homecard-description-container'>
+            {recipeAvailable && <Ribbon sticker={false} />}
+            {title && <div className='homecard-tag' style={{ backgroundColor: recipeAvailable ? '#b0e0e680' : 'rgba(0,0,0,0.5)', color: recipeAvailable ? 'var(--recipe-secondary)' : 'white', fontSize: sm ? 'var(--font-xs)' : 'var(--font-sm)' }}>
+              {title}
+            </div>}
+            <div className='homecard-description homecard-title'  style={{ color: recipeAvailable ? 'white' : 'black', fontSize: sm ? '3vw' : 'var(--font-lg)' }}>
+              {homeDescription}
+            </div>
           </div>}
-          {/* {tags && tags.length && <div className='homecard-tags'>
-            {tags.map(tag => (
-              <Tag content={tag} />
-            ))}
-          {recipeAvailable && <Tag content='Recipe Available' recipe />}
-          </div>} */}
+          {recipeAvailable && !homeDescription && <Ribbon sticker />}
         </div>
-        </div>
-      </div>
-    </Link>
+      </Link>
     </Grid>
   );
 }
