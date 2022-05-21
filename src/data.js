@@ -146,9 +146,9 @@ const data = [
 ]
 
 const kebabCase = string => string
-      .replace(/([a-z])([A-Z])/g, "$1-$2")
-      .replace(/[\s_]+/g, '-')
-      .toLowerCase();
+  .replace(/([a-z])([A-Z])/g, "$1-$2")
+  .replace(/[\s_]+/g, '-')
+  .toLowerCase();
 
 let recipeIndex = 0;
 let augmentedData = [...new Map(data.map(item => { 
@@ -163,6 +163,29 @@ let augmentedData = [...new Map(data.map(item => {
 
 export const all = augmentedData;
 export const recipes = augmentedData.filter(({ recipeAvailable }) => recipeAvailable);
-export const tags = [...new Set(all.map(({ tags }) => tags).flat(1))].sort();
-export const recipeTags = [...new Set(recipes.map(({ tags }) => tags).flat(1))].sort();
+
+const countTags = data => data
+  .map(({ tags }) => tags)
+  .flat(1)
+  .reduce((acc, cur) => {
+    acc[cur] ? ++acc[cur] : acc[cur] = 1; 
+    return acc;
+  }, {});
+
+const sortTagsCount = tagsCount => {
+  let tags = Object.keys(tagsCount);
+  return tags.sort((a, b) => {
+    let diff = tagsCount[b] - tagsCount[a];
+    return diff !== 0 
+      ? diff
+      : a < b 
+        ? -1 
+        : 1;
+  });
+}
+
+export const tagsCount = countTags(all);
+export const tags = sortTagsCount(tagsCount);
+export const recipeTagsCount = countTags(recipes);
+export const recipeTags = sortTagsCount(recipeTagsCount);
 export const sizes = Array.from(Array(Math.max(rows.length, columns.length)), (_, i) => [rows[i] || 3, columns[i]] || 1).slice(0, all.length);

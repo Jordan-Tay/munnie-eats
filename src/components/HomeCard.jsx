@@ -24,23 +24,23 @@ export const HomeCard = props => {
             <img height={sm || md ? `${ROW_SIZE * rows + ROW_GAP * (rows - 1)}px` : '400px'} className={classNames('homecard-image', { 'animate-homecard-image': sm || md })} src={image} alt={title} />
           </div>
           {!homeDescription && <div className='homecard-content'>
-            {(homeTag || (tags && tags.length)) && <div className='homecard-tag' style={{ backgroundColor: recipeAvailable ? '#00506070' : '#ffffff70', color: recipeAvailable ? 'white' : 'black', fontSize: sm ? 'var(--font-xs)' : 'var(--font-sm)' }}>{homeTag || tags[0]}</div>}
-            <div className='homecard-title-container' style={{ backgroundColor: recipeAvailable ? '#b0e0e680' : 'rgba(0,0,0,0.5)' }}>
+            {(homeTag || (tags && tags.length)) && <div className='homecard-tag' style={{ backgroundColor: recipeAvailable ? 'var(--recipe-secondary-alpha)' : '#ffffff70', color: recipeAvailable ? 'white' : 'black', fontSize: sm ? 'var(--font-xs)' : 'var(--font-sm)' }}>{homeTag || tags[0]}</div>}
+            <div className='homecard-title-container' style={{ backgroundColor: recipeAvailable ? 'var(--recipe-primary-alpha)' : 'rgba(0,0,0,0.5)' }}>
               {title && <div className='homecard-title' style={{ color: recipeAvailable ? 'var(--recipe-secondary)' : 'white', fontSize: sm ? 'var(--font-md)' : 'var(--font-lg)' }}>
                 {title}
               </div>}
             </div>
           </div>}
           {homeDescription && <div className='homecard-description-container'>
-            {recipeAvailable && <Ribbon sticker={false} />}
-            {title && <div className='homecard-tag' style={{ backgroundColor: recipeAvailable ? '#b0e0e680' : 'rgba(0,0,0,0.5)', color: recipeAvailable ? 'var(--recipe-secondary)' : 'white', fontSize: sm ? 'var(--font-xs)' : 'var(--font-sm)' }}>
+            {recipeAvailable && <Ribbon content='recipe' />}
+            {title && <div className='homecard-tag' style={{ backgroundColor: recipeAvailable ? 'var(--recipe-primary-alpha)' : 'rgba(0,0,0,0.5)', color: recipeAvailable ? 'var(--recipe-secondary)' : 'white', fontSize: sm ? 'var(--font-xs)' : 'var(--font-sm)' }}>
               {title}
             </div>}
-            <div className='homecard-description homecard-title'  style={{ color: recipeAvailable ? 'white' : 'black', fontSize: sm ? '3vw' : 'var(--font-lg)' }}>
+            <div className='homecard-description homecard-title' style={{ color: recipeAvailable ? 'white' : 'black', fontSize: sm ? '3vw' : 'var(--font-lg)' }}>
               {homeDescription}
             </div>
           </div>}
-          {recipeAvailable && !homeDescription && <Ribbon sticker />}
+          {!homeDescription && recipeAvailable && <Ribbon content='recipe' sticker />}
         </div>
       </Link>
     </Grid>

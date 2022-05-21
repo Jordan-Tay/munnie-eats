@@ -17,7 +17,7 @@ export const Drawer = ({ isOpen, setIsOpen, paddingTop }) => {
       variant='temporary'
       disableSwipeToOpen={false}
       swipeAreaWidth={20}
-      // sx={{ "& .MuiDrawer-paper": { borderWidth: 0, top: `${paddingTop}px` } }}
+    // sx={{ "& .MuiDrawer-paper": { borderWidth: 0, top: `${paddingTop}px` } }}
     >
       <div style={{ height: paddingTop, backgroundColor: '#ffe4e1' }} />
       <div className='drawer-container' style={{ padding: md ? '15px 65px' : sm ? '15px 25px' : '15px' }}>

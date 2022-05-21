@@ -4,6 +4,7 @@ import { Collapse, Divider, Grid, IconButton, List, ListItem, ListItemButton, Li
 import classNames from "classnames";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { Ribbon } from "../components";
 import { all, recipes } from '../data';
 
 export const Recipe = () => {
@@ -11,6 +12,7 @@ export const Recipe = () => {
   const [item, setItem] = useState(null);
   const [open, setOpen] = useState(false);
   const [ingredientsOpen, setIngredientsOpen] = useState([]);
+  const [zoom, setZoom] = useState(false);
 
   const navigate = useNavigate();
 
@@ -45,11 +47,17 @@ export const Recipe = () => {
   const { title, image, prepTime, totalTime, portions, ingredients, instructions, recipeAvailable, recipeIndex } = item;
 
   return (
-    <div style={{ margin: '15px' }}>
+    <div style={{ margin: md ? '15px 80px' : sm ? '15px 40px' : '15px' }}>
       <Snackbar autoHideDuration={2000} open={open} onClose={() => setOpen(false)} message="Link copied to clipboard" />
       <Grid container justifyContent='center'>
+        <Grid item xs={12} sm={zoom ? 21 : 8} md={zoom ? 12 : 6}>
+          <div style={{ position: 'relative' }}>
+            <img onClick={() => setZoom(!zoom)} style={{ cursor: zoom ? 'zoom-out' : 'zoom-in', width: '100%', maxHeight: zoom ? 'none' : '400px', objectFit: zoom ? 'contain' : 'cover' }} src={image} alt={title} />
+          </div>
+        </Grid>
+      </Grid>
+      <Grid container justifyContent='center'>
         <Grid item xs={12} sm={8} md={6}>
-          <img style={{ width: '100%', maxHeight: '400px', objectFit: 'cover' }} src={image} alt={title} />
           <div className="flex">
             <h1 style={{ marginRight: '10px' }}>{title}</h1>
             <Tooltip title="Share" placement="top">
