@@ -13,6 +13,7 @@
   --font-lg: 30px;
   --font-xl: 35px;
   --font-xxl: 40px;
+  --nav-speed: 0.5s;
 }
 
 body {

@@ -1,8 +1,0 @@
-.drawer-container {
-  border-style: solid;
-  border-color: var(--secondary);
-  border-width: 0px 0px 2px;
-  background-color: var(--primary);
-  position: relative;
-  font-size: var(--font-sm);
-}

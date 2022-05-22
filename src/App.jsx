@@ -24,14 +24,11 @@ let theme = createTheme({
 theme = responsiveFontSizes(theme);
 
 function App() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navRef = useRef(null);
-
   return (
     <ThemeProvider theme={theme}>
       <div className='App'>
-        <Drawer isOpen={menuOpen} setIsOpen={setMenuOpen} paddingTop={navRef.current ? navRef.current.getBoundingClientRect().bottom : '0px'} />
-        <Navbar navRef={navRef} menuOpen={menuOpen} toggleMenu={setMenuOpen} />
+        {/* <Drawer isOpen={menuOpen} setIsOpen={setMenuOpen} paddingTop={navRef.current ? navRef.current.getBoundingClientRect().bottom : '0px'} /> */}
+        <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />

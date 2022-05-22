@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Navbar.css';
-import { AppBar, useMediaQuery, useTheme } from '@mui/material';
+import { AppBar, Divider, List, ListItem, ListItemButton, ListItemText, useMediaQuery, useTheme } from '@mui/material';
 import UseAnimations from 'react-useanimations';
 import menu from 'react-useanimations/lib/menu';
 import instagram from 'react-useanimations/lib/instagram';
 import { Link, useLocation } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 
 const pathnameMap = {
   '/': ' LATEST',
@@ -13,57 +14,88 @@ const pathnameMap = {
   '/all': ' ALL',
 }
 
-export const Navbar = ({ menuOpen, toggleMenu, navRef }) => {
-  const location = useLocation();
+export const Navbar = () => {
+  const { pathname } = useLocation();
   const theme = useTheme();
   const sm = useMediaQuery(theme.breakpoints.only("sm"));
   const md = useMediaQuery(theme.breakpoints.up("md"));
 
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [drawerHeight, setDrawerHeight] = useState(0);
+
+  const calcHeight = (el) => {
+    console.log(el.offsetHeight);
+    setDrawerHeight(el.offsetHeight);
+  }
+
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     setMenuOpen(false);
+  //   };
+
+  //   window.addEventListener("scroll", handleScroll, { passive: true });
+
+  //   return () => window.removeEventListener("scroll", handleScroll);
+  // }, []);
+
   return (
-    <AppBar sx={{ position: md ? 'sticky' : 'relative', background: 'none', zIndex: (theme) => theme.zIndex.drawer + 1 }} elevation={0}>
-    <div className='nav' ref={navRef}>
-      {/* <div style={{display: 'flex', alignItems: 'center'}}> */}
-        <UseAnimations 
-          wrapperStyle={{cursor: 'pointer', position: 'absolute', left: md ? '75px' : sm ? '35px' : '10px', top: '20px'}}
-          animation={menu} 
-          size={42} 
-          reverse={!menuOpen}
-          onClick={() => toggleMenu(!menuOpen)}
-        />
+    <div className='nav-container' style={{ position: 'sticky', height: `calc(80px + ${drawerHeight}px)` }}>
+      <div className='nav' style={{ padding: md ? '0 80px' : sm ? '0 40px' : '0 15px' }}>
         <Link to='/'>
-          {/* <div className='title' style={{marginLeft: '10px'}}> */}
           <div className='title'>
             Munnie Eats
-            {location.pathname !== '/404' && (sm || md) && <span className='pathname'>
-              {pathnameMap[location.pathname] || 'RECIPES'}
+            {pathname !== '/404' && (sm || md) && <span className='pathname'>
+              {pathnameMap[pathname] || 'RECIPES'}
             </span>}
           </div>
-          {/* </div> */}
         </Link>
-      {/* </div> */}
-      <div style={{display: 'flex', alignItems: 'center', position: 'absolute', right: md ? '75px' : sm ? '35px' : '10px', top: '20px'}}>
-        {/* <UseAnimations 
-          wrapperStyle={{cursor: 'pointer', marginRight: '10px'}}
-          animation={twitter} 
-          size={42} 
-        /> */}
-        <a 
-          href='https://www.instagram.com/munnie_eats/?hl=en-gb'
-          className='circular-link'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <UseAnimations 
-            wrapperStyle={{cursor: 'pointer'}}
-            animation={instagram} 
-            size={42} 
-            // onClick={() => toggleMenu(!menuOpen)}
+        <div className='icons-container'>
+          <UseAnimations
+            wrapperStyle={{ cursor: 'pointer' }}
+            animation={menu}
+            size={42}
+            reverse={!menuOpen}
+            onClick={() => setMenuOpen(!menuOpen)}
           />
-        </a>
+          <a
+            href='https://www.instagram.com/munnie_eats/?hl=en-gb'
+            className='circular-link'
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <UseAnimations
+              wrapperStyle={{ cursor: 'pointer' }}
+              animation={instagram}
+              size={42}
+            />
+          </a>
+        </div>
       </div>
+      <CSSTransition in={menuOpen} unmountOnExit timeout={1000} classNames='drawer' onEnter={calcHeight} onExit={() => setDrawerHeight(0)}>
+        <div className='drawer-container' style={{ padding: md ? '0 65px 15px' : sm ? '0 25px 15px' : '15px' }}>
+          <List>
+            <Link to='/' onClick={() => setMenuOpen(false)}>
+              <ListItemButton key='Home'>
+                <ListItemText primary='Home' primaryTypographyProps={{ fontSize: '20px' }} />
+              </ListItemButton>
+            </Link>
+            <Divider />
+            <Link to='/about' onClick={() => setMenuOpen(false)}>
+              <ListItemButton key='About'>
+                <ListItemText primary='About' primaryTypographyProps={{ fontSize: '20px' }} />
+              </ListItemButton>
+            </Link>
+            <Divider />
+            <Link to='/recipes' onClick={() => setMenuOpen(false)}>
+              <ListItemButton key='Recipes'>
+                <ListItemText primary='Recipes' primaryTypographyProps={{ fontSize: '20px' }} />
+              </ListItemButton>
+            </Link>
+          </List>
+        </div>
+      </CSSTransition>
     </div>
-    </AppBar>
   );
 }
-  
+
 export default Navbar;
