@@ -29,8 +29,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className='App'>
-        {/* <Drawer isOpen={menuOpen} setIsOpen={setMenuOpen} paddingTop={navRef.current ? navRef.current.getBoundingClientRect().bottom : '0px'} /> */}
-        {/* <Backdrop sx={{ zIndex: 1 }} open={menuOpen} /> */}
+        <Backdrop sx={{ zIndex: 1 }} open={menuOpen} transitionDuration={800} onClick={() => setMenuOpen(false)} />
         <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <Routes>
           <Route path='/' element={<Home />} />

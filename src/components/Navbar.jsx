@@ -24,7 +24,6 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
   const [drawerHeight, setDrawerHeight] = useState(0);
 
   const calcHeight = (el) => {
-    console.log(el.offsetHeight);
     setDrawerHeight(el.offsetHeight);
   }
 
@@ -39,10 +38,14 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [menuOpen, setMenuOpen]);
 
+  const handleCloseMenu = () => {
+    setMenuOpen(false);
+  }
+
   return (
     <div className='nav-container' style={{ position: 'sticky' }}>
       <div className='nav' style={{ padding: md ? '0 80px' : sm ? '0 40px' : '0 15px' }}>
-        <Link to='/'>
+        <Link to='/' onClick={handleCloseMenu}>
           <div className='title'>
             Munnie Eats
             {pathname !== '/404' && (sm || md) && <span className='pathname'>
@@ -72,26 +75,26 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
           </a>
         </div>
       </div>
-      <div className='background' style={{ position: 'absolute', top: 0, width: '100%', height: `calc(80px + ${drawerHeight}px)` }}>
+      <div className='background' style={{ position: 'absolute', top: 0, width: '100%', height: `calc(80px + ${drawerHeight}px)`, ...(drawerHeight > 80 ? { backgroundColor: 'var(--primary)' } : {}) }}>
         <CSSTransition in={menuOpen} unmountOnExit timeout={{
           enter: 1000,
           exit: 500
         }} classNames='drawer' onEnter={calcHeight} onExited={() => setDrawerHeight(0)}>
           <div className='drawer-container' style={{ padding: md ? '0 65px 15px' : sm ? '0 25px 15px' : '0 15px 15px' }}>
             <List>
-              <Link to='/' onClick={() => setMenuOpen(false)}>
+              <Link to='/' onClick={handleCloseMenu}>
                 <ListItemButton key='Home'>
                   <ListItemText primary='Home' primaryTypographyProps={{ fontSize: '20px' }} />
                 </ListItemButton>
               </Link>
               <Divider />
-              <Link to='/about' onClick={() => setMenuOpen(false)}>
+              <Link to='/about' onClick={handleCloseMenu}>
                 <ListItemButton key='About'>
                   <ListItemText primary='About' primaryTypographyProps={{ fontSize: '20px' }} />
                 </ListItemButton>
               </Link>
               <Divider />
-              <Link to='/recipes' onClick={() => setMenuOpen(false)}>
+              <Link to='/recipes' onClick={handleCloseMenu}>
                 <ListItemButton key='Recipes'>
                   <ListItemText primary='Recipes' primaryTypographyProps={{ fontSize: '20px' }} />
                 </ListItemButton>
