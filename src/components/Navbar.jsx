@@ -37,7 +37,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [menuOpen, setMenuOpen]);
 
   return (
     <div className='nav-container' style={{ position: 'sticky' }}>
@@ -77,7 +77,7 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
           enter: 1000,
           exit: 500
         }} classNames='drawer' onEnter={calcHeight} onExited={() => setDrawerHeight(0)}>
-          <div className='drawer-container' style={{ padding: md ? '0 65px 15px' : sm ? '0 25px 15px' : '15px' }}>
+          <div className='drawer-container' style={{ padding: md ? '0 65px 15px' : sm ? '0 25px 15px' : '0 15px 15px' }}>
             <List>
               <Link to='/' onClick={() => setMenuOpen(false)}>
                 <ListItemButton key='Home'>
