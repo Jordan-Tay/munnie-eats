@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import './App.css';
-import { Navbar, Card, Drawer } from './components';
-import { createTheme, responsiveFontSizes } from '@mui/material';
+import { Navbar, Card } from './components';
+import { Backdrop, createTheme, responsiveFontSizes } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import { useState } from 'react';
 import { all, recipes, recipeTags, recipeTagsCount, tags, tagsCount } from './data';
@@ -24,11 +24,14 @@ let theme = createTheme({
 theme = responsiveFontSizes(theme);
 
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <ThemeProvider theme={theme}>
       <div className='App'>
         {/* <Drawer isOpen={menuOpen} setIsOpen={setMenuOpen} paddingTop={navRef.current ? navRef.current.getBoundingClientRect().bottom : '0px'} /> */}
-        <Navbar />
+        {/* <Backdrop sx={{ zIndex: 1 }} open={menuOpen} /> */}
+        <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
