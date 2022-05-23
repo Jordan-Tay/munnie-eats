@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/munnie-eats/static/css/main.5e8a6631.css",
-    "main.js": "/munnie-eats/static/js/main.914e8506.js",
+    "main.css": "/munnie-eats/static/css/main.71a2c178.css",
+    "main.js": "/munnie-eats/static/js/main.af4a4dc5.js",
     "static/media/gyudon.jpeg": "/munnie-eats/static/media/gyudon.06e8dc6b837cdd5b9773.jpeg",
     "static/media/profile.jpg": "/munnie-eats/static/media/profile.4b19d51e5b909b2737d6.jpg",
     "static/media/katsu curry.jpeg": "/munnie-eats/static/media/katsu curry.d3a459a100a582595c0d.jpeg",
@@ -11,11 +11,11 @@
     "static/media/tonkotsu.jpeg": "/munnie-eats/static/media/tonkotsu.228d5a652bebddd1f84d.jpeg",
     "static/media/eclair.jpeg": "/munnie-eats/static/media/eclair.b23301e822fcf56d0974.jpeg",
     "index.html": "/munnie-eats/index.html",
-    "main.5e8a6631.css.map": "/munnie-eats/static/css/main.5e8a6631.css.map",
-    "main.914e8506.js.map": "/munnie-eats/static/js/main.914e8506.js.map"
+    "main.71a2c178.css.map": "/munnie-eats/static/css/main.71a2c178.css.map",
+    "main.af4a4dc5.js.map": "/munnie-eats/static/js/main.af4a4dc5.js.map"
   },
   "entrypoints": [
-    "static/css/main.5e8a6631.css",
-    "static/js/main.914e8506.js"
+    "static/css/main.71a2c178.css",
+    "static/js/main.af4a4dc5.js"
   ]
 }
