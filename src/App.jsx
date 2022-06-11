@@ -1,12 +1,13 @@
 import React, { useRef } from 'react';
 import './App.css';
 import { Navbar, Card } from './components';
-import { Backdrop, createTheme, responsiveFontSizes } from '@mui/material';
+import { Backdrop, createTheme, responsiveFontSizes, useMediaQuery, useTheme } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import { useState } from 'react';
 import { all, recipes, recipeTags, recipeTagsCount, tags, tagsCount } from './data';
 import { Route, Routes } from 'react-router-dom';
 import { About, FoodList, Recipe, Home, ErrorScreen } from './screens';
+import { TransitionGroup } from 'react-transition-group';
 
 let theme = createTheme({
   typography: {
@@ -28,9 +29,14 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className='App'>
-        <Backdrop sx={{ zIndex: 1 }} open={menuOpen} transitionDuration={800} onClick={() => setMenuOpen(false)} />
-        <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <Backdrop sx={{ zIndex: 10 }} open={menuOpen} transitionDuration={800} onClick={() => setMenuOpen(false)} />
+      <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <div className='App' style={{
+        paddingTop: 'calc(env(safe-area-inset-top))',
+        paddingLeft: 'calc(env(safe-area-inset-left)',
+        paddingRight: 'calc(env(safe-area-inset-right)',
+        paddingBottom: 'calc(env(safe-area-inset-top)',
+      }}>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />

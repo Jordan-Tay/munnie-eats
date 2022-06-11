@@ -62,7 +62,7 @@ export const FoodList = ({ list, tags, tagsCount, label, placeholder }) => {
     <div style={{ margin: md ? '15px 80px' : sm ? '15px 40px' : '15px' }}>
       <div style={{ marginBottom: '15px' }}>
         <Grid container spacing={2} justifyContent='space-between'>
-          <Grid item md={3} sm={4} xs={12} sx={{ height: '64px' }}>
+          <Grid item md={4} sm={5} xs={12} sx={{ height: '64px' }}>
             <TextField
               placeholder={placeholder}
               variant='standard'
@@ -81,20 +81,13 @@ export const FoodList = ({ list, tags, tagsCount, label, placeholder }) => {
               }}
             />
           </Grid>
-          <Grid item md={3} sm={4} xs={12} sx={{ height: '64px' }}>
+          <Grid item md={4} sm={5} xs={12} sx={{ height: '64px' }}>
             <Autocomplete 
               multiple 
               size='small'
               value={searchParams.getAll('tag') || null} 
               onChange={(event, newValue) => filterTag(newValue)} 
               options={tags}
-              // options={[...tags].sort((a, b) => {
-              //   let ai = tagsFilter.indexOf(a);
-              //   ai = ai === -1 ? tagsFilter.length + tags.indexOf(a) : ai;
-              //   let bi = tagsFilter.indexOf(b);
-              //   bi = bi === -1 ? tagsFilter.length + tags.indexOf(b) : bi;
-              //   return ai - bi;
-              // })}
               renderOption={(props, option, { selected }) => (
                 <li {...props}>
                   <Box

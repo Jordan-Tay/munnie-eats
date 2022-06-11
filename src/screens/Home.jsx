@@ -17,7 +17,6 @@ export const Home = () => {
       <div style={{ marginBottom: '15px' }}>
       <Grid container spacing={2}>
         {sizes.map((size, i) => <HomeCard key={all[i].id} rows={size[0]} columns={size[1]} {...all[i]} />)}
-        {/* {all.map(item => <HomeCard key={item.id} {...item} />)} */}
       </Grid>
       </div>
         <Grid container spacing={2}>

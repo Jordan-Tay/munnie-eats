@@ -12,11 +12,10 @@ export const About = () => {
   const md = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <div style={{ height: '100vh', width: '100vw', position: 'absolute', top: 0 }}>
+    <div style={{ height: md ? 'calc(100vh - 82px)' : 'auto', width: '100%', top: 0, boxSizing: 'border-box' }}>
       <Grid container sx={{ height: '100%' }}>
         <Grid item xs={12} sm={6}>
           <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-            <div style={{ height: '82px' }} />
             <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center' }}>
               <img style={{ objectFit: 'cover', display: 'block', height: '100%', width: '100%' }} src={profile} alt='profile' />
             </div>
@@ -24,7 +23,6 @@ export const About = () => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-            {(sm || md) && <div style={{ height: '82px' }} />}
             <div style={{ margin: '40px', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'center' }}>
               <h2 style={{ textAlign: 'center' }}>Hello!</h2>
               <p style={{ fontSize: '20px' }}>

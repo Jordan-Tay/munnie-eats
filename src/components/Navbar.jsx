@@ -20,10 +20,11 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
   const sm = useMediaQuery(theme.breakpoints.only("sm"));
   const md = useMediaQuery(theme.breakpoints.up("md"));
 
-  // const [menuOpen, setMenuOpen] = useState(false);
   const [drawerHeight, setDrawerHeight] = useState(0);
+  const [navOpaque, setNavOpaque] = useState(false);
 
   const calcHeight = (el) => {
+    setNavOpaque(true);
     setDrawerHeight(el.offsetHeight);
   }
 
@@ -44,7 +45,11 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
 
   return (
     <div className='nav-container' style={{ position: 'sticky' }}>
-      <div className='nav' style={{ padding: md ? '0 80px' : sm ? '0 40px' : '0 15px' }}>
+      <div className='nav' style={{ 
+        paddingTop: 'env(safe-area-inset-top)',
+        paddingLeft: `calc(env(safe-area-inset-left) + ${md ? '80px' : sm ? '40px' : '15px'}`,
+        paddingRight: `calc(env(safe-area-inset-right) + ${md ? '80px' : sm ? '40px' : '15px'}`
+      }}>
         <Link to='/' onClick={handleCloseMenu}>
           <div className='title'>
             Munnie Eats
@@ -75,30 +80,43 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
           </a>
         </div>
       </div>
-      <div className='background' style={{ position: 'absolute', top: 0, width: '100%', height: `calc(80px + ${drawerHeight}px)`, ...(drawerHeight > 80 ? { backgroundColor: 'var(--primary)' } : {}) }}>
-        <CSSTransition in={menuOpen} unmountOnExit timeout={{
-          enter: 1000,
-          exit: 500
-        }} classNames='drawer' onEnter={calcHeight} onExited={() => setDrawerHeight(0)}>
-          <div className='drawer-container' style={{ padding: md ? '0 65px 15px' : sm ? '0 25px 15px' : '0 15px 15px' }}>
+      <div className='background' style={{ position: 'absolute', top: 0, width: '100%', height: `calc(80px + ${drawerHeight}px)`, ...(navOpaque ? { backgroundColor: 'var(--primary)' } : {}) }}>
+        <CSSTransition in={menuOpen} unmountOnExit timeout={{ enter: 1000, exit: 500 }} classNames='drawer' onEnter={calcHeight} onExiting={() => setNavOpaque(false)} onExited={() => setDrawerHeight(0)}>
+          <div className='drawer-container' style={{ 
+            paddingLeft: `calc(env(safe-area-inset-left) + ${md ? '65px' : sm ? '25px' : '15px'}`,
+            paddingRight: `calc(env(safe-area-inset-right) + ${md ? '65px' : sm ? '25px' : '15px'}`,
+            paddingBottom: '15px'
+          }}>
             <List>
-              <Link to='/' onClick={handleCloseMenu}>
-                <ListItemButton key='Home'>
+                <ListItemButton
+                  component={Link}
+                  to='/'
+                  key='Home'
+                  disabled={pathname === '/'}
+                  disableRipple
+                  onClick={() => setMenuOpen(false)}>
                   <ListItemText primary='Home' primaryTypographyProps={{ fontSize: '20px' }} />
                 </ListItemButton>
-              </Link>
               <Divider />
-              <Link to='/about' onClick={handleCloseMenu}>
-                <ListItemButton key='About'>
+                <ListItemButton
+                  component={Link}
+                  to='/about'
+                  key='About'
+                  disabled={pathname === '/about'}
+                  disableRipple
+                  onClick={() => setMenuOpen(false)}>
                   <ListItemText primary='About' primaryTypographyProps={{ fontSize: '20px' }} />
                 </ListItemButton>
-              </Link>
               <Divider />
-              <Link to='/recipes' onClick={handleCloseMenu}>
-                <ListItemButton key='Recipes'>
+                <ListItemButton 
+                  component={Link}
+                  to='/recipes'
+                  key='Recipes'
+                  disabled={pathname === '/recipes'}
+                  disableRipple
+                  onClick={() => setMenuOpen(false)}>
                   <ListItemText primary='Recipes' primaryTypographyProps={{ fontSize: '20px' }} />
                 </ListItemButton>
-              </Link>
             </List>
           </div>
         </CSSTransition>

@@ -10,24 +10,25 @@ export const Card = props => {
   const { id, image, title, tags, recipeAvailable } = props;
 
   const theme = useTheme();
-  const sm = useMediaQuery(theme.breakpoints.only("sm"));
-  const md = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <Grid item xs={12} sm={6} md={3}>
     <Link to={`/${id}`}>
-      <div className='card-container'>
-        <img className={classNames('card-image', {'animate-card-image': sm || md})} src={image} alt={title} />
-        <div className={classNames('card-content', {'animate-card-content': sm || md})}>
+      <div className='card-container' style={recipeAvailable ? {} : {}}>
+        <img className='card-image' src={image} alt={title} />
+        <div className='card-content'>
           {title && <div className='card-title'>
             {title}
           </div>}
-          {tags && tags.length && <div className='card-tags'>
-            {tags.map(tag => (
-              <Tag key={tag} content={tag} />
-            ))}
-          {recipeAvailable && <Tag recipe />}
-          </div>}
+          {tags && tags.length && 
+            <div className='card-tags'>
+              {tags.map(tag => (
+                <Link to={`/all?tag=${tag}`}>
+                  <Tag key={tag} content={tag} />
+                </Link>
+              ))}
+              {recipeAvailable && <Tag recipe />}
+            </div>}
         </div>
       </div>
     </Link>

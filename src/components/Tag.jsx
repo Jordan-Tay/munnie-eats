@@ -5,7 +5,7 @@ import './Tag.css';
 
 export const Tag = ({ content, recipe = false }) => {
   return (
-    <div className='tag' style={recipe ? { backgroundColor: 'var(--recipe-primary)' } : {}}>
+    <div className='tag' style={recipe ? { cursor: 'default', borderColor: 'var(--recipe-primary-alpha)', backgroundColor: 'var(--recipe-primary-alpha)' } : {}}>
       {!recipe 
         ? content 
         : <MenuBookTwoToneIcon htmlColor='var(--recipe-secondary)' fontSize='small' />}
