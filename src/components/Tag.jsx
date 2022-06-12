@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import MenuBookTwoToneIcon from '@mui/icons-material/MenuBookTwoTone';
 import './Tag.css';
 
-export const Tag = ({ content, recipe = false }) => {
+export const Tag = ({ content, recipe = false, onClick }) => {
   return (
-    <div className='tag' style={recipe ? { cursor: 'default', borderColor: 'var(--recipe-primary-alpha)', backgroundColor: 'var(--recipe-primary-alpha)' } : {}}>
+    <div className='tag' onClick={onClick} style={recipe ? { cursor: 'default', borderColor: 'var(--recipe-primary-alpha)', backgroundColor: 'var(--recipe-primary-alpha)' } : {}}>
       {!recipe 
         ? content 
         : <MenuBookTwoToneIcon htmlColor='var(--recipe-secondary)' fontSize='small' />}

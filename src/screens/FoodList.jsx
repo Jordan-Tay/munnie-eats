@@ -67,6 +67,11 @@ export const FoodList = ({ list, tags, tagsCount, label, placeholder }) => {
               placeholder={placeholder}
               variant='standard'
               color='secondary'
+              onKeyDown={e => {
+                if (e.key === 'Enter') {
+                  e.target.blur();
+                }
+              }}
               onChange={e => filterList(e.target.value)}
               defaultValue={searchParams.get('search') || ''}
               focused
@@ -86,7 +91,13 @@ export const FoodList = ({ list, tags, tagsCount, label, placeholder }) => {
               multiple 
               size='small'
               value={searchParams.getAll('tag') || null} 
-              onChange={(event, newValue) => filterTag(newValue)} 
+              onChange={(e, newValue) => filterTag(newValue)} 
+              onKeyDown={e => {
+                if (e.key === 'Enter') {
+                  e.defaultMuiPrevented = true;
+                  e.target.blur();
+                }
+              }}
               options={tags}
               renderOption={(props, option, { selected }) => (
                 <li {...props}>
